@@ -10,6 +10,7 @@
 	// the default settings
 	var pluginName = 'slideProjectorCarousel';
 	var defaults = {
+		slidesToShow: 3,
 		animateText: false
 	};
 
@@ -27,6 +28,20 @@
 		// plugin vars
 		var o = this.options;
 		var carousel = $(this.element);
+		var projectionContainer = carousel.find('.projection');
+		var projections = projectionContainer.find('li');
+		var slidesContainer = carousel.find('.slides');
+		var slides = slidesContainer.find('li');
+		
+		console.log();
+		
+		projections.eq(1).css('z-index',1).animate({top: 0}, 2000, function() {
+			console.log(this);
+		});
+		
+		
+		
+		
 
 	};
 
