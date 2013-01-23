@@ -1,5 +1,6 @@
 /*!
- * Slide Projector Carousel v0.1 (http://okize.github.com/)
+ * Slide Projector Carousel v1.0.1 (http://okize.github.com/)
+ * A jQuery plugin that displays a large 'hero image' and a navigable thumbnail list
  * Copyright (c) 2012 | Licensed under the MIT license - http://www.opensource.org/licenses/mit-license.php
  */
 
@@ -40,16 +41,14 @@
 		var currentSlide = -1;
 		var nextSlide = 0;
 		var autoplayOverride = carousel.data('autoplay');
-		
-		
-		
-		
+
+
 		var navigation = {}; // the navigation object
 
 		// creates the html that compromises the navigation elements
 		// inserts itself into dom and binds event handlers to arrows
 		var addNavigation = function() {
-			
+
 			// @todo
 			navigation.btnPrevious = $('<a>', {
 				'class': 'slideControls previous disabled',
@@ -78,30 +77,30 @@
 
 			// @todo
 			slidesContainer.addClass('hasControls').append(navigation.btnPrevious, navigation.btnNext);
-			
+
 			// @todo
 			slideWidth = slides.outerWidth();
 
 		};
-		
+
 		// @todo
 		var moveStrip = function(e, direction) {
-			
+
 			if (direction === 'previous') {
 				navigation.btnPrevious.addClass('disabled');
 				navigation.btnNext.removeClass('disabled');
 				slidesList.css('left', 0);
 			}
-			
+
 			if (direction === 'next') {
 				navigation.btnPrevious.removeClass('disabled');
 				navigation.btnNext.addClass('disabled');
 				slidesList.css('left', -(slideWidth * o.slidesToMove));
 			}
-			
+
 		};
-		
-		
+
+
 		// inline override for autoplay; use the attribute 'data-autoplay' to control autoplay speed in the view layer
 		// setting 'data-autoplay' to 0 will disable autoplay
 		if (typeof autoplayOverride !== 'undefined') {
@@ -113,7 +112,7 @@
 				o.autoplaySpeed = 0;
 			}
 		}
-		
+
 		// autoplay object
 		var autoplay = {
 
@@ -142,7 +141,7 @@
 			}
 
 		};
-		
+
 		// @todo
 		slides.on('click', function (e) {
 			e.preventDefault();
@@ -158,7 +157,7 @@
 			// restart autplay
 			if (o.autoplay) { autoplay.start(); }
 		});
-		
+
 		// @todo
 		projections.on('click', function (e) {
 			e.preventDefault();
@@ -166,15 +165,15 @@
 			var openIn = !!link.attr('target') ? '_blank' : '_self';
 			window.open( link.attr('href'), openIn );
 		});
-				
+
 		// if there are more slides than the amount set in slidesToShow, add navigation to slides
 		if (slideCount > o.slidesToShow) {
 			addNavigation();
 		}
-		
+
 		// restart autplay
 		if (o.autoplay) { autoplay.start(); }
-		
+
 		// bind handlers
 		slidesContainer.on('slides.move', moveStrip);
 
