@@ -4,9 +4,16 @@
  * Copyright (c) 2012 | Licensed under the MIT license - http://www.opensource.org/licenses/mit-license.php
  */
 
-;(function ( $, window, undefined ) {
+// use AMD or browser globals to create a jQuery plugin.
+;(function (factory) {
 
-	'use strict';
+  if (typeof define === 'function' && define.amd) {
+    define(['jquery'], factory);
+  } else {
+    factory(jQuery);
+  }
+
+}(function ($) {
 
 	// the default settings
 	var pluginName = 'slideProjectorCarousel';
@@ -188,4 +195,4 @@
 		});
 	};
 
-}(jQuery, window));
+}));
