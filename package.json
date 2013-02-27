@@ -1,0 +1,10 @@
+{
+  "name": "slideProjectorCarousel",
+  "main": "slideProjectorCarousel",
+  "description": "jQuery plugin for 'slide projector' carousel",
+  "version": "1.0.1",
+  "licenses": [{
+    "type": "MIT",
+    "url": "https://github.com/okize/slideProjectorCarousel/blob/master/license.md"
+  }]
+}
