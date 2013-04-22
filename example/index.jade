@@ -1,0 +1,25 @@
+!!! 5
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title Filmstrip Carousel Component Tests
+    link(rel='stylesheet', href='css/style.css', media='screen')
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js')
+    script(src='../slideProjectorCarousel.js')
+    script(src='javascript/test.js')
+  body
+    #micrositeContainer
+      #micrositeContainerInner
+        #micrositeContainerCompress
+          #micrositeHeader
+            h2 Header
+          #micrositeContent
+            #micrositeContentColumnFull
+              include slideProjectorCarousel
+              include slideProjectorCarousel
+            #micrositeContentColumnLeft
+              h2 Left Column
+            #micrositeContentColumnRight
+              h2 Right Column
+            #micrositeFooter
+              h2 Footer

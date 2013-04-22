@@ -21,7 +21,13 @@ endef
 
 default:
 
-	@echo "* linting..."
+	@echo "* compiling jade templates..."
+	@jade -P ./example/index.jade
+
+	#@echo "* compiling sass..."
+	#@sass ./example/sass/style.scss ./example/css/style.css
+
+	@echo "* linting javascript..."
 	@jshint ${SCRIPT_NAME}.js --show-non-errors
 
 	@echo "* minifying..."
