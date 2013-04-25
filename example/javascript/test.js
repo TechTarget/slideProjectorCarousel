@@ -37,7 +37,7 @@ $(document).on('ready', function() {
     autoplay: true,
     autoplaySpeed: 5000,
     slidesToShow: 3,
-    slidesToMove: 1
+    slidesToMove: 2
   });
 
 });
