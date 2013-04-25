@@ -1,0 +1,171 @@
+/* carousel slide projector */
+
+@import "compass";
+
+.carouselSlideProjector{
+  margin: 0 0 30px; 
+
+  ul{
+    margin: 0 !important; padding: 0 !important; list-style: none; 
+  }
+}
+
+
+.projection { 
+  height: 285px; 
+  overflow: hidden;
+  position: relative;  
+  width: 100%; 
+
+  ul{}
+
+  li{
+    position: absolute; 
+    text-align: center; 
+    top: 285px; 
+
+    &:first-child{
+      top: 0; 
+    }
+  }
+
+  img{
+    cursor: pointer; 
+  }
+
+  .caption{
+    background-color: #eee; 
+    color: red; 
+    display: none;
+    position: relative; 
+
+    h3 a{
+      color: #fff !important; 
+      display: block; 
+      margin-top: 20px;
+    }
+  }
+
+  h2{
+    font-size: 30px; 
+    left: 30px; 
+    line-height: 1.15;
+    position: absolute;
+    top: 20px;
+    width: 300px;
+  }
+
+  h3{
+    font-size: 15px; 
+    left: 30px;
+    position: absolute; 
+    top: 106px;
+    width: 400px; 
+  }
+}
+
+.slides{
+  overflow: hidden; 
+  position: relative;
+
+  ul{
+    max-height: 80px; 
+    min-height: 80px; 
+    overflow: hidden; 
+    position: relative;
+    width: 200%;
+  }
+
+  li{
+    border-left: 1px solid #ccc; 
+    cursor: pointer;
+    display: block; 
+    float: left; 
+    line-height: 1.2; 
+    *line-height: 60px; 
+    overflow: hidden; 
+    padding: 10px; 
+    width: 296px; 
+
+    transition: background-color .5s;
+
+    &.active, &:hover{
+      background-color: #eee; 
+      transition: background-color .5s;
+    }
+
+    &:first-child{
+      margin-left: -1px;
+    }
+  }
+
+  img{
+    display: block;
+    float: left;
+    height: 60px; 
+    margin: 0 10px 0 0;
+    width: 95px; 
+  }
+
+  span{
+    display: table-cell; 
+    *display: block;
+    font-size: 12px; 
+    font-weight: bold;
+    height: 60px; 
+    overflow: hidden; 
+    vertical-align: middle; 
+  }
+
+}
+
+.hasControls {
+  ul{
+    margin: 0 41px !important;
+  }
+  li{
+    width: 270px;
+  }
+
+  .slideControls{
+    display: block;
+  }
+}
+
+.slideControls { 
+  display: none; 
+  height: 80px;  
+  position: absolute; 
+  top: 0;
+  width: 40px;
+
+  &.previous, &.next{
+    background-color: #ddd;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: 100%;
+  }
+
+  &.previous{
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAASCAYAAACNdSR1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAALJJREFUeNpi/P//PwMyMGu8ZACkzjNggodMWAQnMGAHBUxopgYAKXssCg+eqtfbwISkUACPqQkgAtnkAiCWx6KwEWjqA7hioKkKQKoem6eQbYOZvACXp4CmfoArJuQpZAEmfEGFLsDEQAJgwmYCrshhgrrrIBbF9lD/YDgjAZfp0MhCKIYGeiMWxfLIzmRCc+NDLBrqoZGGUAwNfFyeBUcaI5b0fABHJAUyERMZMGcCBBgAwII5XyuaXB4AAAAASUVORK5CYII=);
+    left: 0;
+    border-right: 1px solid #ccc;
+  }
+
+  &.next{
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAASCAYAAACNdSR1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAALtJREFUeNpiNG24+ICBgUGeARMYnqrXu4AswATEBQzYwQR0ASag7g1A+iAWxfZmjZcC0E0GgQRcpgM1CKAoBpoOcncjFsXyyM5kQnPjQywa6oGmK6AoBpr+AY9nF4AIxv///6OIAk05APIcFg2BTFgEcQYlEwMJgImYyIDZyITm3gAc7j0IijwmJIUCeExNQHdGAY4E1QiNNIhiaKDXY1H4ENk2JuRAx+YpaGRBFBPyFHrQ4QwqdAGAAAMAqE439pizWsYAAAAASUVORK5CYII=);
+    right: 0;
+    border-left: 1px solid #ccc;
+  }
+
+  &.previous.disabled{
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAASCAYAAACNdSR1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAALJJREFUeNpi/P//PwMyOH7iqAGQOs+ACR4yYRGcwIAdFDChmRoApOyxKDxoaWG9gQlJoQAeUxNABLLJBUAsj0VhI9DUB3DFQFMVgFQ9Nk8h2wYzeQEuTwFN/QBXTMhTyAJM+IIKXYCJgQTAhM0EXJHDBHXXQSyK7aH+wXBGAi7ToZGFUAwN9EYsiuWRncmE5saHWDTUQyMNoRga+Lg8C440Rizp+QCOSApkIiYyYM4ECDAAFAo69b+iA5cAAAAASUVORK5CYII=);
+  }
+
+  &.next.disabled{
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAASCAYAAACNdSR1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAALtJREFUeNpiPHb8yAMGBgZ5BkxgaGlhfQFZgAmICxiwgwnoAkxA3RuA9EEsiu2PnzgagG4yCCTgMh2oQQBFMdB0kLsbsSiWR3YmE5obH2LRUA80XQFFMdD0D3g8uwBEMP7//x9FFGjKAZDnsGgIZMIiiDMomRhIAEzERAbMRiY09wbgcO9BUOQxISkUwGNqArozCnAkqEZopEEUQwO9HovCh8i2MSEHOjZPQSMLopiQp9CDDmdQoQsABBgA3m04wYRCMrsAAAAASUVORK5CYII=);
+  }
+
+}

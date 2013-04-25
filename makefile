@@ -24,8 +24,8 @@ default:
 	@echo "* compiling jade templates..."
 	@jade -P ./example/index.jade
 
-	#@echo "* compiling sass..."
-	#@sass ./example/sass/style.scss ./example/css/style.css
+	@echo "* compiling sass..."
+	@sass --compass --style compact ./example/sass/style.scss ./example/css/style.css
 
 	@echo "* linting javascript..."
 	@jshint ${SCRIPT_NAME}.js --show-non-errors
