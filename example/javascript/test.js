@@ -26,7 +26,7 @@ $(document).on('ready', function() {
           size: 16
         },
         'fifth': {
-          background: '#EBCAB8',
+          background: '#8470FF',
           foreground: '#FFF',
           size: 16
         }
