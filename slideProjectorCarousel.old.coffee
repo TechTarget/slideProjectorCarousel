@@ -1,9 +1,8 @@
-###!
-slideProjectorCarousel v1.0.3 (https://github.com/TechTarget/slideProjectorCarousel)
-Author: Morgan Wigmanich <okize123@gmail.com> (http://github.com/okize)
-Copyright (c) 2013 | Licensed under the MIT license
-http://www.opensource.org/licenses/mit-license.php
-###
+#!
+# * Slide Projector Carousel v1.0.1 (https://github.com/okize)
+# * A jQuery plugin that displays a large 'hero image' and a navigable thumbnail list
+# * Copyright (c) 2012 | Licensed under the MIT license - http://www.opensource.org/licenses/mit-license.php
+# 
 
 # use AMD or browser globals to create a jQuery plugin.
 ((factory) ->
@@ -12,7 +11,9 @@ http://www.opensource.org/licenses/mit-license.php
   else
     factory jQuery
 ) ($) ->
-
+  
+  # the default settings
+  
   # plugin constructor
   Plugin = (element, options) ->
     @element = element
@@ -20,10 +21,7 @@ http://www.opensource.org/licenses/mit-license.php
     @_defaults = defaults
     @_name = pluginName
     @init()
-
   pluginName = "slideProjectorCarousel"
-
-  # the default settings
   defaults =
     autoplay: true
     autoplaySpeed: 5000
@@ -31,7 +29,7 @@ http://www.opensource.org/licenses/mit-license.php
     slidesToMove: 3
 
   Plugin::init = ->
-
+    
     # plugin vars
     o = @options
     carousel = $(@element)
@@ -40,19 +38,17 @@ http://www.opensource.org/licenses/mit-license.php
     slidesContainer = carousel.find(".slides")
     slidesList = slidesContainer.find("ul")
     slides = slidesList.find("li")
-    # can't get width here since width will depend on
-    # whether there are navigation controls or not
-    slideWidth = 0
+    slideWidth = 0 # can't get width here since width will depend on whether there are navigation controls or not
     slideCount = slides.length
     currentSlide = -1
     nextSlide = 0
     autoplayOverride = carousel.data("autoplay")
     navigation = {} # the navigation object
-
+    
     # creates the html that compromises the navigation elements
     # inserts itself into dom and binds event handlers to arrows
     addNavigation = ->
-
+      
       # @todo
       navigation.btnPrevious = $("<a>",
         class: "slideControls previous disabled"
@@ -61,10 +57,9 @@ http://www.opensource.org/licenses/mit-license.php
         text: "Previous"
       ).on("click", (e) ->
         e.preventDefault()
-        unless $(this).hasClass("disabled")
-          slidesContainer.trigger "slides.move", "previous"
+        slidesContainer.trigger "slides.move", "previous"  unless $(this).hasClass("disabled")
       )
-
+      
       # @todo
       navigation.btnNext = $("<a>",
         class: "slideControls next"
@@ -75,13 +70,14 @@ http://www.opensource.org/licenses/mit-license.php
         e.preventDefault()
         slidesContainer.trigger "slides.move", "next"  unless $(this).hasClass("disabled")
       )
-
+      
       # @todo
       slidesContainer.addClass("hasControls").append navigation.btnPrevious, navigation.btnNext
-
+      
       # @todo
       slideWidth = slides.outerWidth()
 
+    
     # @todo
     moveStrip = (e, direction) ->
       if direction is "previous"
@@ -93,6 +89,7 @@ http://www.opensource.org/licenses/mit-license.php
         navigation.btnNext.addClass "disabled"
         slidesList.css "left", -(slideWidth * o.slidesToMove)
 
+    
     # inline override for autoplay; use the attribute 'data-autoplay' to control autoplay speed in the view layer
     # setting 'data-autoplay' to 0 will disable autoplay
     if typeof autoplayOverride isnt "undefined"
@@ -102,28 +99,30 @@ http://www.opensource.org/licenses/mit-license.php
       else
         o.autoplay = false
         o.autoplaySpeed = 0
-
+    
     # autoplay object
     autoplay =
-
+      
       # initialize autoplay
       start: ->
         @timer = setTimeout($.proxy(@getNextSlide, this), o.autoplaySpeed)
 
+      
       # determine the next item to select
       getNextSlide: ->
-
+        
         # increment the next item index or reset if at end of list
         nextSlide = (if (nextSlide is slideCount - 1) then 0 else nextSlide + 1)
-
+        
         # select next item in list
         slides.eq(nextSlide).trigger "click"
 
+      
       # stop autoplay
       stop: ->
         clearTimeout @timer
 
-
+    
     # @todo
     slides.on "click", (e) ->
       e.preventDefault()
@@ -139,9 +138,11 @@ http://www.opensource.org/licenses/mit-license.php
         "z-index": 1
         top: 0
 
-      # restart autoplay
+      
+      # restart autplay
       autoplay.start()  if o.autoplay
 
+    
     # @todo
     projections.on "click", (e) ->
       e.preventDefault()
@@ -149,16 +150,20 @@ http://www.opensource.org/licenses/mit-license.php
       openIn = (if !!link.attr("target") then "_blank" else "_self")
       window.open link.attr("href"), openIn
 
+    
     # if there are more slides than the amount set in slidesToShow, add navigation to slides
     addNavigation()  if slideCount > o.slidesToShow
-
+    
     # restart autplay
     autoplay.start()  if o.autoplay
-
+    
     # bind handlers
     slidesContainer.on "slides.move", moveStrip
 
+  
   # a lightweight plugin wrapper around the constructor preventing against multiple instantiations
   $.fn[pluginName] = (options) ->
     @each ->
       $.data this, "plugin_" + pluginName, new Plugin(this, options)  unless $.data(this, "plugin_" + pluginName)
+
+
