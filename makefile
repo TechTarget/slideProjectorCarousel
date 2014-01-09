@@ -11,6 +11,11 @@ default:
 	@echo "* compiling coffeescript..."
 	@coffee --print ${SCRIPT_NAME}.coffee > ${SCRIPT_NAME}.js
 
+	@echo "* linting coffeescript..."
+	@coffeelint ${SCRIPT_NAME}.coffee
+
+	@echo "* linting javascript..."
+	@jshint ${SCRIPT_NAME}.js --show-non-errors
 
 	@echo "* minifying..."
 	@uglifyjs ${SCRIPT_NAME}.js \
